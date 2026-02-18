@@ -1,56 +1,29 @@
 import useState from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import ProgressIndicator from './components/ProgressIndicator';
-import QuestionBox from './components/QuestionBox';
-import PageA from './pages/PageA';
-import PageB from './pages/PageB';
+import CompletionPage from './pages/CompletionPage';
+import SurveyPage from './pages/SurveyPage';
 
 function App() {
-  const questions = [
-    {
-      title: '질문1 입니다.',
-      desc: '설명1 입니다.',
-      type: 'text',
-      required: false,
-      options: {},
-    },
-    {
-      title: '질문2 입니다.',
-      desc: '설명2 입니다.',
-      type: 'text',
-      required: false,
-      options: {},
-    },
-  ];
-
-  const step = 0;
-
-  // const [answers, setAnswers] = useState([]);
-
   return (
     <div className="App">
-      {/* <ProgressIndicator />
-      <QuestionBox
-        question={questions[step]}
-        questionsLength={questions.length}
-        step={step}
-        answer={answers[step]}
-        setAnswer={(newAnswer) => {
-          setAnswers((answers) => {
-            const newAnswers = [...answers];
-            newAnswers[step] = newAnswer;
-            return newAnswers;
-          });
-        }}
-      /> */}
       <div>Hello World</div>
       <Routes>
-        <Route path="/" element={<PageA />} />
-        <Route path="/2" element={<PageB />} />
+        <Route path="/done" element={<CompletionPage />} />
+        <Route path="/survey/:surveyId" element={<SurveyPage />}>
+          <Route path=":step" element={<SurveyPage />} />
+        </Route>
       </Routes>
     </div>
   );
 }
+
+/* "/survey" 추가로 필요한 것: 설문ID
+
+http://www.surveypie.com/survey?id=abc123
+http://www.surveypie.com/survey/abc123
+=> "...~survey/abc123" 실제 주소인지, abc123이 파라미터인지 어떻게 판별?
+=> "/survey/:surveyId" 라우트로 설정하면, "/survey/abc123" 주소는 surveyId가 abc123인 라우트로 인식됨
+ */
 
 export default App;
