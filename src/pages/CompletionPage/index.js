@@ -1,9 +1,13 @@
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
-const a = 12;
+// import testState from '../../stores/test/atom';
+import testWithComma from '../../stores/test/testWithComma';
 
 function CompletionPage() {
-  return <CompletionPageContainer>Completion Page</CompletionPageContainer>;
+  const test = useRecoilValue(testWithComma);
+
+  return <CompletionPageContainer>{test}</CompletionPageContainer>;
 }
 
 const CompletionPageContainer = styled.div``;
