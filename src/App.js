@@ -36,6 +36,7 @@ const Box = styled.div`
   box-sizing: border-box;
   padding: 60px;
   display: flex;
+  position: relative;
 `;
 
 /* "/survey" 추가로 필요한 것: 설문ID
